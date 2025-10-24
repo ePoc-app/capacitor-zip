@@ -1,7 +1,7 @@
 {
-  "name": "capacitor-plugin-zip",
+  "name": "capacitor-zip",
   "version": "0.0.1",
-  "description": "A capacitor v7+ plugin to zip or unzip a local file",
+  "description": "A capacitor plugin to zip or unzip files",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",
@@ -13,16 +13,16 @@
     "ios/Sources",
     "ios/Tests",
     "Package.swift",
-    "CapacitorPluginZip.podspec"
+    "CapacitorZip.podspec"
   ],
   "author": "Benoit Rospars",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/ePoc-app/capacitor-plugin-zip.git"
+    "url": "git+https://github.com/ePoc-app/capacitor-zip.git"
   },
   "bugs": {
-    "url": "https://github.com/ePoc-app/capacitor-plugin-zip/issues"
+    "url": "https://github.com/ePoc-app/capacitor-zip/issues"
   },
   "keywords": [
     "capacitor",
@@ -31,7 +31,7 @@
   ],
   "scripts": {
     "verify": "npm run verify:ios && npm run verify:android && npm run verify:web",
-    "verify:ios": "xcodebuild -scheme CapacitorPluginZip -destination generic/platform=iOS",
+    "verify:ios": "xcodebuild -scheme CapacitorZip -destination generic/platform=iOS",
     "verify:android": "cd android && ./gradlew clean build test && cd ..",
     "verify:web": "npm run build",
     "lint": "npm run eslint && npm run prettier -- --check && npm run swiftlint -- lint",
@@ -39,7 +39,7 @@
     "eslint": "eslint . --ext ts",
     "prettier": "prettier \"**/*.{css,html,ts,js,java}\" --plugin=prettier-plugin-java",
     "swiftlint": "node-swiftlint",
-    "docgen": "docgen --api ZipPluginPlugin --output-readme README.md --output-json dist/docs.json",
+    "docgen": "docgen --api ZipPlugin --output-readme README.md --output-json dist/docs.json",
     "build": "npm run clean && npm run docgen && tsc && rollup -c rollup.config.mjs",
     "clean": "rimraf ./dist",
     "watch": "tsc --watch",
@@ -76,5 +76,8 @@
     "android": {
       "src": "android"
     }
+  },
+  "dependencies": {
+    "jszip": "^3.10.1"
   }
 }

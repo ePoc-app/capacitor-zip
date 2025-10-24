@@ -1,6 +1,6 @@
-import { ZipPlugin } from 'capacitor-plugin-zip';
+import { Zip } from 'capacitor-zip';
 
 window.testEcho = () => {
     const inputValue = document.getElementById("echoInput").value;
-    ZipPlugin.echo({ value: inputValue })
+    Zip.echo({ value: inputValue })
 }

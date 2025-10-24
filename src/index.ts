@@ -1,10 +1,10 @@
 import { registerPlugin } from '@capacitor/core';
 
-import type { ZipPluginPlugin } from './definitions';
+import type { ZipPlugin } from './definitions';
 
-const ZipPlugin = registerPlugin<ZipPluginPlugin>('ZipPlugin', {
-  web: () => import('./web').then((m) => new m.ZipPluginWeb()),
+const Zip = registerPlugin<ZipPlugin>('Zip', {
+  web: () => import('./web').then((m) => new m.ZipWeb()),
 });
 
 export * from './definitions';
-export { ZipPlugin };
+export { Zip };

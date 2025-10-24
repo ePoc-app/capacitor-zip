@@ -1,11 +1,11 @@
-# capacitor-plugin-zip
+# capacitor-zip
 
-A capacitor v7+ plugin to zip or unzip a local file
+A capacitor plugin to zip or unzip files
 
 ## Install
 
 ```bash
-npm install capacitor-plugin-zip
+npm install capacitor-zip
 npx cap sync
 ```
 
