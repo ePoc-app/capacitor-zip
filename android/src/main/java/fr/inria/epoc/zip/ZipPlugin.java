@@ -1,6 +1,6 @@
 package fr.inria.epoc.zip;
 
-import android.util.Log;
+import java.io.File;
 import com.getcapacitor.JSObject;
 import com.getcapacitor.Plugin;
 import com.getcapacitor.PluginCall;
