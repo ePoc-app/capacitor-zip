@@ -1,5 +1,5 @@
 {
-  "name": "capacitor-zip",
+  "name": "@epoc/capacitor-zip",
   "version": "0.0.1",
   "description": "A capacitor plugin to zip or unzip files",
   "main": "dist/plugin.cjs.js",
