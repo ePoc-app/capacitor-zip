@@ -5,5 +5,5 @@ export interface ZipPlugin {
 
 export interface ZipOptions {
   source: string;
-  destination: string;
+  destination: string
 }
