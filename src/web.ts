@@ -31,14 +31,12 @@ export class ZipWeb extends WebPlugin implements ZipPlugin {
   }
   async unzip(options: ZipOptions): Promise<{ success: boolean; message?: string }> {
     const filesystem = window.Capacitor?.Plugins?.Filesystem;
-    console.log('Filesystem plugin:', filesystem);
 
     if (!filesystem) {
       return Promise.resolve({ success: false, message: 'Capacitor Filesystem plugin is not available.' });
     }
 
     try {
-      console.log('Unzip called with options:', options);
       const { source, destination } = options;
 
       // Retrieve the ZIP file from the app's IndexedDB
@@ -46,34 +44,32 @@ export class ZipWeb extends WebPlugin implements ZipPlugin {
         path: source,
       });
 
-      console.log(zipContent);
-
       if (!zipContent) {
         throw new Error(`ZIP file not found in IndexedDB at path: ${source}`);
       }
 
-      console.log('ZIP file retrieved, loading with JSZip...');
-
       // Extract the ZIP file using JSZip
       const zip = await JSZip.loadAsync(zipContent, {base64: true});
 
-      console.log('ZIP file loaded, extracting contents...', zip.files);
+      // Extract Filesystem directory and path from destination path
+      const directories = ['DATA', 'DOCUMENTS', 'CACHE', 'EXTERNAL', 'EXTERNAL_STORAGE', 'EXTERNAL_CACHE', 'TEMPORARY', "LIBRARY", "LIBRARY_NO_CLOUD"];
+      const pathParts = destination.split('/');
+      const directory = directories.includes(pathParts[1] as any) ? pathParts[1] as any : 'DATA';
+      const destPath = directories.includes(pathParts[1] as any) ? pathParts.slice(2).join('/') : pathParts.slice(1).join('/');
 
       // Iterate over each file in the ZIP
       const files = Object.keys(zip.files);
       for (const fileName of files) {
-        console.log('Extracting file:', fileName);
         const file = zip.files[fileName];
         if (!file.dir) { // Skip directories
           const fileContent = await file.async('base64');
-          const filePath = `${destination}/${fileName}`;
+          const filePath = `${destPath}/${fileName}`;
 
-          console.log(`Writing file to IndexedDB at path: ${filePath}`);
           // Store the extracted file in the destination IndexedDB
           await filesystem.appendFile({
             path: filePath,
             data: fileContent,
-            directory: "DATA" // todo: extract directory from destination path instead of hardcoding it
+            directory
           });
         }
       }
