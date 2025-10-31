@@ -1,7 +1,7 @@
 {
   "name": "@epoc/capacitor-zip",
-  "version": "0.0.1",
-  "description": "A capacitor plugin to zip or unzip files",
+  "version": "0.1.0",
+  "description": "A capacitor plugin to unzip files",
   "main": "dist/plugin.cjs.js",
   "module": "dist/esm/index.js",
   "types": "dist/esm/index.d.ts",

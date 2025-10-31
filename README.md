@@ -1,6 +1,6 @@
 # capacitor-zip
 
-A capacitor plugin to zip or unzip files
+A capacitor plugin to unzip files
 
 ## Install
 
